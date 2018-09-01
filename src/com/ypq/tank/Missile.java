@@ -11,8 +11,8 @@ public class Missile {
 	private TankClient tc;
 	private boolean lived = true, good = true;
 	private Color c = null;
-	public static final int WIDTH = 10;	//×Óµ¯µÄ¿í¶È
-	public static final int HEIGHT = 10;	//×Óµ¯µÄ¸ß¶È
+	public static final int WIDTH = 10;	//å­å¼¹çš„å®½åº¦
+	public static final int HEIGHT = 10;	//å­å¼¹çš„é«˜åº¦
 	private static final int SPEED = 10;
 
 	public Missile(int x, int y, Tank.Direction dir, boolean good, Color c, TankClient tc) {
@@ -41,7 +41,7 @@ public class Missile {
 		Iterator<Tank> i = tankList.iterator();
 		while(i.hasNext()) {
 			Tank t = i.next();
-			if(isHitTank(t)) {		//Èç¹û×Óµ¯ÓöÉÏÌ¹¿Ë,Ê¹×Óµ¯ºÍÌ¹¿Ë¾ùËÀÍö
+			if(isHitTank(t)) {		//å¦‚æœå­å¼¹é‡ä¸Šå¦å…‹,ä½¿å­å¼¹å’Œå¦å…‹å‡æ­»äº¡
 				this.lived = false;
 				t.setLived(false);
 			}
@@ -91,7 +91,7 @@ public class Missile {
 		default:
 			break;
 		}
-		if(x < 0 || y < 0 || x > TankClient.WIDTH || y > TankClient.HEIGHT || !lived) {		//Èç¹û×Óµ¯·É³ö±ß½ç»òÕßÒÑ¾­ËÀÁË¾ÍÒÆ³ömissileList
+		if(x < 0 || y < 0 || x > TankClient.WIDTH || y > TankClient.HEIGHT || !lived) {		//å¦‚æœå­å¼¹é£å‡ºè¾¹ç•Œæˆ–è€…å·²ç»æ­»äº†å°±ç§»å‡ºmissileList
 			j.remove();
 		}
 	}
@@ -101,7 +101,7 @@ public class Missile {
 	}
 	
 	public boolean isHitTank(Tank t) {
-		if(t.lived && this.lived && t.good != this.good && this.getRect().intersects(t.getRect())) {		//Èç¹û×Óµ¯µÄÍâ½Ó¾ØĞÎÓëÌ¹¿ËÍâ½ÓÓĞ½»¼¯,ÔòÈÏÎª»÷ÖĞ
+		if(t.lived && this.lived && t.good != this.good && this.getRect().intersects(t.getRect())) {		//å¦‚æœå­å¼¹çš„å¤–æ¥çŸ©å½¢ä¸å¦å…‹å¤–æ¥æœ‰äº¤é›†,åˆ™è®¤ä¸ºå‡»ä¸­
 			return true;
 		}
 		return false;

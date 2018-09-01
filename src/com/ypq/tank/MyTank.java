@@ -4,13 +4,13 @@ import java.awt.event.KeyEvent;
 
 
 public class MyTank extends Tank {
-	boolean isLeftKey = false, isUpKey = false, isRightKey = false, isDownKey = false;    	//¼ÇÂ¼ËÄ¸ö·½Ïò¼üµÄ°´ÏÂ×´Ì¬,falseÎªÎ´°´ÏÂ
+	boolean isLeftKey = false, isUpKey = false, isRightKey = false, isDownKey = false;    	//è®°å½•å››ä¸ªæ–¹å‘é”®çš„æŒ‰ä¸‹çŠ¶æ€,falseä¸ºæœªæŒ‰ä¸‹
 	private static final Color COLOR = Color.RED;
 	public MyTank(int x, int y, boolean good, TankClient tc) {
 		super(x, y, COLOR, good, tc);
 	}
 	
-	//·½Ïò¼ü°´ÏÂÏìÓ¦ÊÂ¼ş
+	//æ–¹å‘é”®æŒ‰ä¸‹å“åº”äº‹ä»¶
 	public void arrowPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
 		if(keyCode == KeyEvent.VK_UP) isUpKey = true;
@@ -22,7 +22,7 @@ public class MyTank extends Tank {
 		}
 	}
 	
-	//·½Ïò¼üËÉ¿ªÏìÓ¦ÊÂ¼ş
+	//æ–¹å‘é”®æ¾å¼€å“åº”äº‹ä»¶
 	public void arrowReleased(KeyEvent e) {
 		int keyCode = e.getKeyCode();
 		if(keyCode == KeyEvent.VK_UP) isUpKey = false;
@@ -46,7 +46,7 @@ public class MyTank extends Tank {
 	public static MyTank newRandomMyTank(TankClient tc) {
 		while(true) {
 			MyTank t = new MyTank((int)(Math.random()*TankClient.WIDTH), (int)(Math.random()*TankClient.HEIGHT), true, tc);
-			if(!t.detectHitTank() && !t.detectHitWall()) 		//±£Ö¤ĞÂ½¨µÄÌ¹¿Ë×²²»µ½Ç½»òÕßÆäËûÌ¹¿Ë
+			if(!t.detectHitTank() && !t.detectHitWall()) 		//ä¿è¯æ–°å»ºçš„å¦å…‹æ’ä¸åˆ°å¢™æˆ–è€…å…¶ä»–å¦å…‹
 				return t;
 		}
 	}

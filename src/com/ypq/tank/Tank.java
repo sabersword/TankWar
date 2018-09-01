@@ -4,24 +4,24 @@ import java.awt.event.*;
 import java.util.Iterator;
 
 /**
- * Ì¹¿Ë¸¸Àà
+ * å¦å…‹çˆ¶ç±»
  * @author god
  *
  */
 public class Tank {
-	protected int x, y, oldX = 0, oldY = 0;			//oldX,oldYÓÃÓÚ¼ÇÂ¼ÉÏÒ»´ÎµÄ×ø±ê
+	protected int x, y, oldX = 0, oldY = 0;			//oldX,oldYç”¨äºè®°å½•ä¸Šä¸€æ¬¡çš„åæ ‡
 	protected Color color;
 	protected boolean good, lived = true;
 	protected TankClient tc = null;
 	
-	enum Direction {LEFT, LEFTUP, UP, RIGHTUP, RIGHT, RIGHTDOWN, DOWN, LEFTDWON, STOP};		//¼ÇÂ¼Ì¹¿ËµÄ·½Ïò
+	enum Direction {LEFT, LEFTUP, UP, RIGHTUP, RIGHT, RIGHTDOWN, DOWN, LEFTDWON, STOP};		//è®°å½•å¦å…‹çš„æ–¹å‘
 	Direction dir = Direction.STOP;
 	Direction BarrelDir = Direction.RIGHT;
 	
-	protected static final int SPEED = 5;				//Ì¹¿ËÒÆ¶¯¾àÀë
-	public static final int WIDTH = 30;			//Ì¹¿Ë¿í¶È
-	public static final int HEIGHT = 30;			//Ì¹¿Ë¸ß¶È
-	private static final int RANDOMSAFE = 50;	//Ëæ»úÉú³ÉµÄÓëÆÁÄ»±ßÔµµÄ°²È«¾àÀë
+	protected static final int SPEED = 5;				//å¦å…‹ç§»åŠ¨è·ç¦»
+	public static final int WIDTH = 30;			//å¦å…‹å®½åº¦
+	public static final int HEIGHT = 30;			//å¦å…‹é«˜åº¦
+	private static final int RANDOMSAFE = 50;	//éšæœºç”Ÿæˆçš„ä¸å±å¹•è¾¹ç¼˜çš„å®‰å…¨è·ç¦»
 
 	public Tank(int x, int y, Color color, boolean good, TankClient tc) {
 		this.x = x;
@@ -31,20 +31,20 @@ public class Tank {
 		this.tc = tc;
 	}
 	
-	//ÖØ»­Ì¹¿Ë,ÏÈ½«Ì¹¿ËÒÆ¶¯ÔÙÖØ»­
+	//é‡ç”»å¦å…‹,å…ˆå°†å¦å…‹ç§»åŠ¨å†é‡ç”»
 	public void drawTank(Graphics g,Iterator iterator) {
 		move();
 		Color c = g.getColor();
 		g.setColor(color);
 		g.fillOval(x, y, WIDTH, HEIGHT);
-		drawBarrel(g);				//»­³öÅÚÍ²
+		drawBarrel(g);				//ç”»å‡ºç‚®ç­’
 		g.setColor(c);
 		popList(iterator);
 	}
 	
 	/**
-	 * »­³öÅÚÍ²,ÅÚÍ²µÄÒ»¶ËÊÇÌ¹¿ËÖĞĞÄ,ÁíÒ»¶Ë¼ÆËã³ö,x,y
-	 * @param g ´«µİĞèÒª»­µÄ»­±Ê
+	 * ç”»å‡ºç‚®ç­’,ç‚®ç­’çš„ä¸€ç«¯æ˜¯å¦å…‹ä¸­å¿ƒ,å¦ä¸€ç«¯è®¡ç®—å‡º,x,y
+	 * @param g ä¼ é€’éœ€è¦ç”»çš„ç”»ç¬”
 	 */
 	public void drawBarrel(Graphics g) {
 		int x = 0, y = 0;
@@ -91,10 +91,10 @@ public class Tank {
 	}
 
 	/**
-	 * Ì¹¿ËµÄÒÆ¶¯·½·¨,Ã¿¸ôÒ»¶ÎÊ±¼äµ÷ÓÃ
+	 * å¦å…‹çš„ç§»åŠ¨æ–¹æ³•,æ¯éš”ä¸€æ®µæ—¶é—´è°ƒç”¨
 	 */
 	public void move() {
-		oldX = x;		//ÔÚÒÆ¶¯Ç°±¸·İÉÏÒ»¸ö×ø±ê
+		oldX = x;		//åœ¨ç§»åŠ¨å‰å¤‡ä»½ä¸Šä¸€ä¸ªåæ ‡
 		oldY = y;
 		calDir();
 		switch(dir) {
@@ -139,7 +139,7 @@ public class Tank {
 		if(y > TankClient.HEIGHT - Tank.HEIGHT) y = TankClient.HEIGHT - Tank.HEIGHT;
 	}
 	
-	//½«ÒÑ¾­ËÀÍöµÄÌ¹¿ËÒÆ³öÈİÆ÷,²¢ÇÒ²úÉú±¬Õ¨Ğ§¹û
+	//å°†å·²ç»æ­»äº¡çš„å¦å…‹ç§»å‡ºå®¹å™¨,å¹¶ä¸”äº§ç”Ÿçˆ†ç‚¸æ•ˆæœ
 	public void popList(Iterator<Tank> iterator) {
 		if(!this.isLived()) {
 			iterator.remove();
@@ -147,15 +147,15 @@ public class Tank {
 		}
 	}
 	
-	//fireº¯ÊıĞèÒªÖ¸Ã÷ÊÇÄÄ¸öÌ¹¿ËÕóÓª·¢³öµÄ×Óµ¯
+	//fireå‡½æ•°éœ€è¦æŒ‡æ˜æ˜¯å“ªä¸ªå¦å…‹é˜µè¥å‘å‡ºçš„å­å¼¹
 	public void fire(boolean good) {
-		if(good)				//¼º·½Ì¹¿ËÊÇºÚÉ«×Óµ¯,µĞ·½Ì¹¿ËÊÇÀ¶É«×Óµ¯
+		if(good)				//å·±æ–¹å¦å…‹æ˜¯é»‘è‰²å­å¼¹,æ•Œæ–¹å¦å…‹æ˜¯è“è‰²å­å¼¹
 			tc.missileList.add(new Missile(x + Tank.WIDTH/2 - Missile.WIDTH/2, y + Tank.HEIGHT/2 - Missile.HEIGHT/2, BarrelDir, good, Color.BLACK, tc));
 		else
 			tc.missileList.add(new Missile(x + Tank.WIDTH/2 - Missile.WIDTH/2, y + Tank.HEIGHT/2 - Missile.HEIGHT/2, BarrelDir, good, Color.BLUE, tc));
 	}
 	
-	//×ÓÀàĞèÒªÖØĞ´¸Ä·½·¨,ÒÔ±ãÈ·ÈÏÌ¹¿ËÊÇÔõÑù¿ØÖÆµÄ
+	//å­ç±»éœ€è¦é‡å†™æ”¹æ–¹æ³•,ä»¥ä¾¿ç¡®è®¤å¦å…‹æ˜¯æ€æ ·æ§åˆ¶çš„
 	public void calDir() {}
 	
 	public Rectangle getRect() {
@@ -173,12 +173,12 @@ public class Tank {
 		return getRect().intersects(w.getRect());
 	}
 	
-	//·µ»ØÊÇ·ñÅö×²µ½Ç½±Ú
+	//è¿”å›æ˜¯å¦ç¢°æ’åˆ°å¢™å£
 	public boolean detectHitWall() {
 		boolean flag = false;
 		Iterator<Wall> i = tc.wallList.iterator(); 
 		while(i.hasNext()) {
-			if(isHitWall(i.next()) && this.isLived()) {			//Õâ¸ö¾¹È»ÓĞ¶ÌÂ·µÄÎÊÌâ,ĞèÒªÏÈnextÔÙºóÃæÒ»¸öÌõ¼ş
+			if(isHitWall(i.next()) && this.isLived()) {			//è¿™ä¸ªç«Ÿç„¶æœ‰çŸ­è·¯çš„é—®é¢˜,éœ€è¦å…ˆnextå†åé¢ä¸€ä¸ªæ¡ä»¶
 				x = oldX;
 				y = oldY;
 				flag = true;
@@ -187,7 +187,7 @@ public class Tank {
 		return flag;
 	}
 	
-	//¸ù¾İÎÒ·½ºÍµĞ·½Ì¹¿ËÈİÆ÷²éÕÒÓĞÃ»Ïà×²µÄÌ¹¿Ë,·µ»ØÌ¹¿ËµØÍ¼ÉÏÊÇ·ñÓĞÌ¹¿ËÏà×²
+	//æ ¹æ®æˆ‘æ–¹å’Œæ•Œæ–¹å¦å…‹å®¹å™¨æŸ¥æ‰¾æœ‰æ²¡ç›¸æ’çš„å¦å…‹,è¿”å›å¦å…‹åœ°å›¾ä¸Šæ˜¯å¦æœ‰å¦å…‹ç›¸æ’
 	public boolean detectHitTank() {
 		boolean flag = false;
 		Iterator<MyTank> myTankIterator = tc.myTankList.iterator(); 
@@ -212,7 +212,7 @@ public class Tank {
 		return flag;
 	}
 
-	//ÅĞ¶ÏÁ½Á¾Ì¹¿ËÊÇ·ñÏà×²
+	//åˆ¤æ–­ä¸¤è¾†å¦å…‹æ˜¯å¦ç›¸æ’
 	public boolean isHitTank(Tank t) {
 		if(this.getRect().intersects(t.getRect()))
 			return true;
@@ -224,11 +224,11 @@ public class Tank {
 		while(true) {
 			int x = (int)(Math.random()*TankClient.WIDTH);
 			int y = (int)(Math.random()*TankClient.HEIGHT);
-			if(x < RANDOMSAFE)		//¶Ôx½øĞĞ´óĞ¡ÏŞÖÆ
+			if(x < RANDOMSAFE)		//å¯¹xè¿›è¡Œå¤§å°é™åˆ¶
 				x = RANDOMSAFE;
 			else if(x > TankClient.WIDTH - RANDOMSAFE)
 				x = TankClient.WIDTH - RANDOMSAFE;
-			if(y < RANDOMSAFE)		//¶Ôy½øĞĞ´óĞ¡ÏŞÖÆ
+			if(y < RANDOMSAFE)		//å¯¹yè¿›è¡Œå¤§å°é™åˆ¶
 				y = RANDOMSAFE;
 			else if(y > TankClient.HEIGHT - RANDOMSAFE)
 				y = TankClient.HEIGHT - RANDOMSAFE;
@@ -239,7 +239,7 @@ public class Tank {
 				t = new EnemyTank(x, y, good, tc);
 			}
 				
-			if(!t.detectHitTank() && !t.detectHitWall())		//±£Ö¤ĞÂ½¨µÄÌ¹¿Ë×²²»µ½Ç½»òÕßÆäËûÌ¹¿Ë
+			if(!t.detectHitTank() && !t.detectHitWall())		//ä¿è¯æ–°å»ºçš„å¦å…‹æ’ä¸åˆ°å¢™æˆ–è€…å…¶ä»–å¦å…‹
 				return t;		
 		}
 	}

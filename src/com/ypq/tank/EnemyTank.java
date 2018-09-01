@@ -10,15 +10,15 @@ public class EnemyTank extends Tank {
 	}
 	
 	protected static Random random = null;
-	protected static final int MINTIME = 1, MAXTIME = 2;		//°´ÕÕÄ³Ò»·½Ïò×î¶à×ßºÍ×îÉÙ×ßµÄÊ±¼ä
-	protected static final int HIT = 1, ALL = 15;				//µĞ¶ÔÌ¹¿Ë·¢×Óµ¯µÄ¸ÅÂÊÎªHIT/ALL
-	protected static final int AIHIT = 3, AIALL = 4;			//AIHIT/ALL±íÃ÷AIµÄÇ¿¶È,´ú±íÓĞ¶àÉÙ¸ÅÂÊÏò×Å¼º·½Ì¹¿ËÒÆ¶¯
+	protected static final int MINTIME = 1, MAXTIME = 2;		//æŒ‰ç…§æŸä¸€æ–¹å‘æœ€å¤šèµ°å’Œæœ€å°‘èµ°çš„æ—¶é—´
+	protected static final int HIT = 1, ALL = 15;				//æ•Œå¯¹å¦å…‹å‘å­å¼¹çš„æ¦‚ç‡ä¸ºHIT/ALL
+	protected static final int AIHIT = 3, AIALL = 4;			//AIHIT/ALLè¡¨æ˜AIçš„å¼ºåº¦,ä»£è¡¨æœ‰å¤šå°‘æ¦‚ç‡å‘ç€å·±æ–¹å¦å…‹ç§»åŠ¨
 	protected int step = 0;
 	
-	//¼ÆËãAIµÄ·½ÏòºÍ·¢Éä×Óµ¯
+	//è®¡ç®—AIçš„æ–¹å‘å’Œå‘å°„å­å¼¹
 	public void calDir() {
 		/**
-		 * Èç¹ûÄ³Ò»¸ö·½ÏòµÄ²½ÊıÒÑ¾­½áÊø,ÖØĞÂÑ°ÕÒ·½Ïò²¢ÇÒ¼ÆËã²½Êı
+		 * å¦‚æœæŸä¸€ä¸ªæ–¹å‘çš„æ­¥æ•°å·²ç»ç»“æŸ,é‡æ–°å¯»æ‰¾æ–¹å‘å¹¶ä¸”è®¡ç®—æ­¥æ•°
 		 */
 		if(step == 0) {
 			step = (MINTIME + random.nextInt(MAXTIME - MINTIME))*1000/TankClient.FRESHTIME;
@@ -32,16 +32,16 @@ public class EnemyTank extends Tank {
 			if(!tc.myTankList.isEmpty()) {
 				if(random.nextInt(AIALL) < AIHIT) {
 					MyTank mt = tc.myTankList.get(0);
-					if(mt.x <= x && mt.y <= y) {		//Èç¹ûÊôÓÚ×óÉÏ·½Ïò,Ëæ»úÑ¡Ôñ×ó·½Ïò»òÕßÉÏ·½Ïò
+					if(mt.x <= x && mt.y <= y) {		//å¦‚æœå±äºå·¦ä¸Šæ–¹å‘,éšæœºé€‰æ‹©å·¦æ–¹å‘æˆ–è€…ä¸Šæ–¹å‘
 						dir = leftUp[random.nextInt(leftUp.length)];
 					}
-					else if(mt.x >= x && mt.y <= y) {	//Èç¹ûÊôÓÚÓÒÉÏ·½Ïò,Ëæ»úÑ¡ÔñÓÒ·½Ïò»òÕßÉÏ·½Ïò
+					else if(mt.x >= x && mt.y <= y) {	//å¦‚æœå±äºå³ä¸Šæ–¹å‘,éšæœºé€‰æ‹©å³æ–¹å‘æˆ–è€…ä¸Šæ–¹å‘
 						dir = rightUp[random.nextInt(rightUp.length)];
 					}
-					else if(mt.x >= x && mt.y >= y) {	//Èç¹ûÊôÓÚÓÒÏÂ·½Ïò,Ëæ»úÑ¡ÔñÓÒ·½Ïò»òÕßÏÂ·½Ïò
+					else if(mt.x >= x && mt.y >= y) {	//å¦‚æœå±äºå³ä¸‹æ–¹å‘,éšæœºé€‰æ‹©å³æ–¹å‘æˆ–è€…ä¸‹æ–¹å‘
 						dir = rightDown[random.nextInt(rightDown.length)];
 					}
-					else if(mt.x <= x && mt.y >= y) {	//Èç¹ûÊôÓÚ×óÏÂ·½Ïò,Ëæ»úÑ¡Ôñ×ó·½Ïò»òÕßÏÂ·½Ïò
+					else if(mt.x <= x && mt.y >= y) {	//å¦‚æœå±äºå·¦ä¸‹æ–¹å‘,éšæœºé€‰æ‹©å·¦æ–¹å‘æˆ–è€…ä¸‹æ–¹å‘
 						dir = leftDown[random.nextInt(leftDown.length)];
 					}
 				}
@@ -63,10 +63,10 @@ public class EnemyTank extends Tank {
 	public static EnemyTank newRandomEnemyTank(TankClient tc) {
 		while(true) {
 			EnemyTank t = new EnemyTank((int)(Math.random()*TankClient.WIDTH), (int)(Math.random()*TankClient.HEIGHT), false, tc);
-			if(!t.detectHitTank() && !t.detectHitWall())		//±£Ö¤ĞÂ½¨µÄÌ¹¿Ë×²²»µ½Ç½»òÕßÆäËûÌ¹¿Ë
+			if(!t.detectHitTank() && !t.detectHitWall())		//ä¿è¯æ–°å»ºçš„å¦å…‹æ’ä¸åˆ°å¢™æˆ–è€…å…¶ä»–å¦å…‹
 				return t;
 			else
-				System.out.println("·¢ÏÖÖØ¸´×ø±ê!");
+				System.out.println("å‘ç°é‡å¤åæ ‡!");
 				
 		}
 	}

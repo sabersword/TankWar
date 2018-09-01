@@ -4,7 +4,7 @@ import java.util.*;
 
 
 public class Explode {
-	private int x, y, step = 0;		//x,yÎª×ø±ê,stepÖ¸Ã÷±¬Õ¨µÚ¼¸²½
+	private int x, y, step = 0;		//x,yä¸ºåæ ‡,stepæŒ‡æ˜çˆ†ç‚¸ç¬¬å‡ æ­¥
 	private Color c = Color.ORANGE;
 	private int diameter[] = {4, 8, 15, 25, 39, 45, 30, 10};
 	
@@ -18,7 +18,7 @@ public class Explode {
 		return new Explode(x, y, c);
 	}
 	
-	//»æÖÆ±¬Õ¨²¢ÇÒÅĞ¶Ï±¬Õ¨ÊÇ·ñ½áÊø,½áÊøµÄ»°ÒÆ³ö±¬Õ¨¶ÓÁĞ
+	//ç»˜åˆ¶çˆ†ç‚¸å¹¶ä¸”åˆ¤æ–­çˆ†ç‚¸æ˜¯å¦ç»“æŸ,ç»“æŸçš„è¯ç§»å‡ºçˆ†ç‚¸é˜Ÿåˆ—
 	public void drawExplode(Graphics g, Iterator<Explode> k) {
 		Color c = g.getColor();
 		g.setColor(this.c);

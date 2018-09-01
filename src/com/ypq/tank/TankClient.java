@@ -5,7 +5,7 @@ import java.util.*;
 import java.util.List;
 
 /**
- * Ì¹¿Ë´óÕ½µÄÖ÷´°¿ÚÀà
+ * å¦å…‹å¤§æˆ˜çš„ä¸»çª—å£ç±»
  * @author god
  *
  */
@@ -19,8 +19,8 @@ public class TankClient extends Frame{
 	
 	private Image offScreen = null;
 	public static final int WIDTH = 800, HEIGHT = 600;
-	public static final int FRESHTIME = 50;	//ÖØ»­Ïß³ÌµÄË¯ÃßÊ±¼ä
-	private static final int INCTANK = 3;		//Ã¿´Î°´¼üÔö¼ÓµÄÌ¹¿ËÊı
+	public static final int FRESHTIME = 50;	//é‡ç”»çº¿ç¨‹çš„ç¡çœ æ—¶é—´
+	private static final int INCTANK = 3;		//æ¯æ¬¡æŒ‰é”®å¢åŠ çš„å¦å…‹æ•°
 	
 	public void paint(Graphics g) {		
 		
@@ -39,7 +39,7 @@ public class TankClient extends Frame{
 		Iterator<Missile> j = missileList.iterator();
 		while(j.hasNext()) {
 			Missile m = j.next();
-			m.draw(g, j);			//½«µü´úÆ÷´«¸øMissileÀà,ÈÃÀàÄÚ²¿É¾µô³ö½çµÄ×Óµ¯
+			m.draw(g, j);			//å°†è¿­ä»£å™¨ä¼ ç»™Missileç±»,è®©ç±»å†…éƒ¨åˆ æ‰å‡ºç•Œçš„å­å¼¹
 		}
 		
 		Iterator<Explode> k = explodeList.iterator();
@@ -54,16 +54,16 @@ public class TankClient extends Frame{
 			e.drawWall(g);
 		}
 		
-		g.drawString("×Óµ¯ÒÑ¾­·¢³ö:" + missileList.size(), 10, 40);
-		g.drawString("ÒÑ¾­±¬Õ¨:" + explodeList.size(), 10, 55);
-		g.drawString("Ê£ÓàµĞ·½Ì¹¿Ë:" + enemyTankList.size(), 10, 70);
+		g.drawString("å­å¼¹å·²ç»å‘å‡º:" + missileList.size(), 10, 40);
+		g.drawString("å·²ç»çˆ†ç‚¸:" + explodeList.size(), 10, 55);
+		g.drawString("å‰©ä½™æ•Œæ–¹å¦å…‹:" + enemyTankList.size(), 10, 70);
 	}
 
 	public void launchFrame(int width, int height) {
 		this.setBounds(50, 50, width, height);
 		this.setVisible(true);
 		this.setResizable(false);
-		this.setTitle("Ì¹¿Ë´óÕ½"); 
+		this.setTitle("å¦å…‹å¤§æˆ˜"); 
 		this.setBackground(Color.GREEN);
 		this.addWindowListener(new WindowMonitor());
 		this.addKeyListener(new KeyMonitor());
